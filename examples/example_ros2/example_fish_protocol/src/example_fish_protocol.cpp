@@ -15,12 +15,13 @@ int main(int argc, char** argv) {
   proto_config.serial_address_ = "/dev/ttyS12";
   // 初始化
   auto protocol = GetProtocolByConfig(proto_config);
-  // 发送数据
-  protocol->ProtocolSendRawData("Hello FishBot!");
+
   // 接收数据
   protocol->SetDataRecvCallback([](const std::string& data) -> void {
     std::cout << "recv" << data << std::endl;
   });
+  // 发送数据
+  protocol->ProtocolSendRawData("Hello FishBot!");
   // 销毁
   protocol->ProtocolDestory();
 
